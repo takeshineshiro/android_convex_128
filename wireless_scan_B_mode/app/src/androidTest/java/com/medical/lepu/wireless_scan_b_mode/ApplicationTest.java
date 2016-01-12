@@ -1,4 +1,4 @@
-package lepu.medical.com.wireless_scan_b_mode;
+package com.medical.lepu.wireless_scan_b_mode;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
