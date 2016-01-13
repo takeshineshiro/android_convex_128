@@ -27,9 +27,8 @@ public class BaseApplication   extends Application {
 
      public    static Resources  _resource  ;
 
-     private   static String     lastToast = "";
 
-      private static long      lastToastTime;
+
 
 
     @Override
@@ -284,9 +283,7 @@ public class BaseApplication   extends Application {
                                  int gravity) {
 
         if (message != null && !message.equalsIgnoreCase("")) {
-            long time = System.currentTimeMillis();
-            if (!message.equalsIgnoreCase(lastToast)
-                    || Math.abs(time - lastToastTime) > 2000) {
+
                 View view = LayoutInflater.from(getContext()).inflate(
                         R.layout.view_toast, null);
                 ((TextView) view.findViewById(R.id.title_tv)).setText(message);
@@ -306,10 +303,21 @@ public class BaseApplication   extends Application {
 
                 toast.setDuration(duration);
                 toast.show();
-                lastToast = message;
-                lastToastTime = System.currentTimeMillis();
+
+
             }
+
+
+
         }
+
+
+
+
+
+
+
+
     }
 
 
@@ -317,4 +325,4 @@ public class BaseApplication   extends Application {
 
 
 
-}
+
