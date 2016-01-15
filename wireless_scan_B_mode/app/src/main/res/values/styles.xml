@@ -8,4 +8,54 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!-- app main menu style start! -->
+    <!-- drawer菜单layout的样式 -->
+    <style name="MenuItemLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">55dip</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">15dip</item>
+        <item name="android:paddingRight">15dip</item>
+        <item name="android:background">?attr/layout_item_bg</item>
+    </style>
+
+    <!-- drawer菜单ImageView的样式 -->
+    <style name="MenuItemImageViewStyle">
+        <item name="android:layout_width">24dip</item>
+        <item name="android:layout_height">24dip</item>
+        <item name="android:layout_marginRight">15dip</item>
+    </style>
+
+    <!--drawer 菜单TextView的样式 -->
+    <style name="MenuItemTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/drawer_menu_text</item>
+        <item name="android:drawablePadding">@dimen/space_10</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
+    <!-- app main menu style end! -->
+
+
+    <!-- 横向线条 -->
+    <style name="h_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dip</item>
+        <item name="android:background">?attr/lineColor</item>
+    </style>
+    <!-- 纵向线条 -->
+    <style name="v_line">
+        <item name="android:layout_width">1dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">?attr/lineColor</item>
+    </style>
+
+
+
+
+
+
 </resources>

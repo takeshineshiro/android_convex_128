@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#e2e2e2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id = "@+id/menu_item_image"
+        style="@style/MenuItemLayoutStyle">
+
+       <ImageView
+           style="@style/MenuItemImageViewStyle"
+           android:background="@drawable/drawer_menu_icon_image"
+           android:contentDescription="@null"
+           />
+
+        <TextView
+            style="@style/MenuItemTextViewStyle"
+            android:gravity="center"
+            android:text="@string/utrasound_image"
+            />
+    </LinearLayout>
+
+    <View    style="@style/h_line" />
+
+
+    <LinearLayout
+        android:id="@+id/menu_item_video"
+        style="@style/MenuItemLayoutStyle">
+
+        <ImageView
+            style="@style/MenuItemImageViewStyle"
+            android:background="@drawable/drawer_menu_icon_video"
+            android:contentDescription="@null"
+            />
+        <TextView style="@style/MenuItemTextViewStyle"
+              android:gravity="center"
+              android:text="@string/utrasound_video"/>
+    </LinearLayout>
+
+    <View    style="@style/h_line" />
+
+
+   <LinearLayout
+       android:id="@+id/menu_item_setting"
+       style="@style/MenuItemLayoutStyle"
+       >
+     <ImageView
+         style="@style/MenuItemImageViewStyle"
+         android:background="@drawable/drawer_menu_icon_setting"
+         android:contentDescription="@null"
+         />
+       <TextView
+           style="@style/MenuItemTextViewStyle"
+           android:gravity="center"
+           android:text="@string/utrasound_setting"
+           />
+
+   </LinearLayout>
+
+    <View    style="@style/h_line" />
+
+    <LinearLayout
+        android:id="@+id/menu_item_person"
+        style="@style/MenuItemLayoutStyle">
+        <ImageView
+            style="@style/MenuItemImageViewStyle"
+            android:background="@drawable/drawer_menu_icon_person"
+            android:contentDescription="@null"
+            />
+        <TextView
+            style="@style/MenuItemTextViewStyle"
+            android:gravity="center"
+            android:text="@string/utrasound_person"
+            />
+    </LinearLayout>
+
+    <View    style="@style/h_line" />
+
+</LinearLayout>

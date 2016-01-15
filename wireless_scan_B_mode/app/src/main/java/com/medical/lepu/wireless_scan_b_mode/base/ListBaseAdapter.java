@@ -4,10 +4,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.medical.lepu.wireless_scan_b_mode.entity.Entity;
+
 /**
  * Created by wong on 16/1/13.
  */
-public class ListBaseAdapter  extends BaseAdapter {
+public class ListBaseAdapter<T extends Entity>  extends BaseAdapter {
 
     @Override
     public int getCount() {

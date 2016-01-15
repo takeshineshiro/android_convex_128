@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <!-- drawer  layout  choice -->
+    <item name="layout_item_bg">@drawable/drawer_list_item_background</item>
+    <item name="layout_bg_normal">@color/day_layout_bg_normal</item>
+    <item name="lineColor">@color/night_line_color</item>
+
+</resources>

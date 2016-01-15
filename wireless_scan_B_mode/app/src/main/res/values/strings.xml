@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">无线凸阵-128</string>
+    <string name="utrasound_image">超声图像</string>
+    <string name="utrasound_video">超声视频</string>
+    <string name="utrasound_setting">参数设置</string>
+    <string name="utrasound_person">个人信息</string>
+
+
 
 
 
