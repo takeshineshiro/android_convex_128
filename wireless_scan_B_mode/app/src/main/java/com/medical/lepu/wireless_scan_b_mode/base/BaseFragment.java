@@ -75,7 +75,7 @@ public class BaseFragment  extends Fragment   implements  android.view.View.OnCl
 
 
     @Override
-    public void initView() {
+    public void initView( View  view ) {
 
     }
 
