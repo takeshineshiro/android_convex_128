@@ -4,6 +4,9 @@
     <string name="utrasound_video">超声视频</string>
     <string name="utrasound_setting">参数设置</string>
     <string name="utrasound_person">个人信息</string>
+    <string name="wifi_link">WIFI连接</string>
+    <string name="drawer_open">抽屉打开</string>
+    <string name="drawer_close">抽屉关闭</string>
 
 
 

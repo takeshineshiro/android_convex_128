@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +31,9 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
      */
 
     private    static    final   String   CURRENT_SELECTED_POSITION   =  "current_selected_position" ;
+
+
+    private    static    final   String   CURRENT_SELECTED_MODULE     = "current_selected_module";
 
     /**
      * A pointer to the current callbacks instance (the Activity).
@@ -74,6 +79,7 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
     private    int                            current_selected_positon  = 0 ;
 
 
+
     private    boolean                        fromSavedInstanceState  ;
 
 
@@ -101,7 +107,12 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
 
              current_selected_positon   =    savedInstanceState.getInt(CURRENT_SELECTED_POSITION);
 
+
+
                fromSavedInstanceState  =  true  ;
+
+
+
          }
 
              selectItem(current_selected_positon);
@@ -112,7 +123,8 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
 
     private  void    selectItem(int   positon)  {
 
-           current_selected_positon  = positon  ;
+           current_selected_positon  =   positon    ;
+
 
         if (drawerLayout!=null)  {
                 drawerLayout.closeDrawer(fragmentContainerView);
@@ -179,10 +191,13 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
 
              case    R.id.menu_item_image:
 
+
+
                     UIHelper.showUtrasoundImage(getActivity());
 
                      break ;
              case   R.id.menu_item_video:
+
 
                     UIHelper.showUtrasoundVideo(getActivity());
 
@@ -190,17 +205,22 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
 
              case   R.id.menu_item_setting:
 
+
                     UIHelper.showUtrasoundSetting(getActivity());
 
                     break ;
 
              case  R.id.menu_item_person:
 
+
+
                     UIHelper.showUtrasoundPerson(getActivity());
 
                     break ;
 
              default:
+
+
 
                  UIHelper.showUtrasoundImage( getActivity());
 
@@ -251,7 +271,8 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt(CURRENT_SELECTED_POSITION,current_selected_positon);
+        outState.putInt(CURRENT_SELECTED_POSITION, current_selected_positon);
+
     }
 
     @Override
@@ -262,10 +283,70 @@ public class DrawerNavigationFragment  extends BaseFragment  implements View.OnC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+            if(drawerToggle.onOptionsItemSelected(item))  {
+
+                  return   true;
+
+            }
+
+
         return super.onOptionsItemSelected(item);
 
 
     }
+
+
+      // setup   the   fragment   in  the   main  drawerlayout
+      // @param fragmentId   The android:id of this fragment in its activity's layout.
+      // @param drawerLayout The DrawerLayout containing this fragment's UI.
+
+      public     void    setUp (int fragmentId, DrawerLayout drawerLayout)   {
+
+         fragmentContainerView   =  getActivity().findViewById(fragmentId) ;
+
+          drawerLayout           =  drawerLayout ;
+
+          ActionBar   actionBar   =  getActionBar () ;
+
+          actionBar.setDisplayHomeAsUpEnabled(true);
+
+          actionBar.setHomeButtonEnabled(true);
+
+
+           drawerToggle   =   new ActionBarDrawerToggle( getActivity(),drawerLayout,null,R.string.drawer_open,R.string.drawer_close )  {
+
+
+               public void onDrawerClosed(View view) {
+                   super.onDrawerClosed(view);
+                   getActivity().invalidateOptionsMenu();
+               }
+
+               public void onDrawerOpened(View drawerView) {
+                   super.onDrawerOpened(drawerView);
+                   getActivity().invalidateOptionsMenu();
+               }
+
+           } ;
+
+
+             drawerLayout.post(new Runnable() {
+                 @Override
+                 public void run() {
+                     drawerToggle.syncState();
+                 }
+             })    ;
+
+          drawerLayout.setDrawerListener(drawerToggle);
+
+      }
+
+
+
+
+    private ActionBar getActionBar() {
+        return ((ActionBarActivity) getActivity()).getSupportActionBar();
+    }
+
 
 
     //inter  interface

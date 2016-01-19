@@ -40,7 +40,7 @@ public class BaseListFragment  <T extends Entity> extends  BaseFragment  impleme
 
            View   view   =  inflater.inflate(getLayoutId(),container,false) ;
 
-           initView();
+           initView(view);
 
           return    view  ;
     }
@@ -55,8 +55,9 @@ public class BaseListFragment  <T extends Entity> extends  BaseFragment  impleme
 
 
     @Override
-    public void initView() {
-        super.initView();
+    public void initView(View  view) {
+
+        super.initView(view);
 
         swipeRefreshLayout.setOnRefreshListener(this);
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_submodules">
+        <item>超声图像</item>
+        <item>超声视频</item>
+        <item>参数设置</item>
+        <item>用户信息</item>
+    </string-array>
+
+
+</resources>

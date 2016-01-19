@@ -1,7 +1,7 @@
 package com.medical.lepu.wireless_scan_b_mode.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,7 +13,7 @@ import com.medical.lepu.wireless_scan_b_mode.interf.BaseViewInterface;
 /**
  * Created by wong on 16/1/13.
  */
-public class BaseActivity   extends AppCompatActivity   implements  BaseViewInterface{
+public class BaseActivity   extends ActionBarActivity implements  BaseViewInterface{
 
 
     protected  LayoutInflater      baseInflater  ;
@@ -36,6 +36,9 @@ public class BaseActivity   extends AppCompatActivity   implements  BaseViewInte
 
 
          baseInflater   =   getLayoutInflater()   ;
+
+
+
 
 
           baseToolbar   =   initToolbar() ;

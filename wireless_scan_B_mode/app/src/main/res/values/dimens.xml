@@ -39,6 +39,8 @@
     <dimen name="space_100">100.0dip</dimen>
     <dimen name="space_60">60dp</dimen>
     <dimen name="space_49">49dip</dimen>
+    <dimen name="space_45">45.0dip</dimen>
+    <dimen name="space_40">40.0dip</dimen>
     <dimen name="space_35">35.0dip</dimen>
     <dimen name="space_30">30.0dip</dimen>
     <dimen name="space_29">29.0dip</dimen>
