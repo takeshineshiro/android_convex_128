@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_buttom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/pic_num"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:progressDrawable="@drawable/buttom_slider_contex"
+        android:thumb="@drawable/buttom_slider_slider"
+        android:layout_weight="7"/>
+
+    <ImageButton
+        android:id="@+id/pre_button"
+        android:background="@drawable/btn_last_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:background="@drawable/btn_play_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:background="@drawable/btn_next_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+
+
+    <ImageButton
+        android:id="@+id/save_button"
+        android:background="@drawable/btn_save_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+
+    <ImageButton
+        android:id="@+id/scanner_button"
+        android:background="@drawable/btn_scan_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+
+    <ImageButton
+        android:id="@+id/setting_button"
+        android:background="@drawable/btn_setting_button_selector"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_6"
+        android:layout_weight="1"/>
+
+
+
+</LinearLayout>

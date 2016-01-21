@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:background="@drawable/lepu"
+        android:contentDescription="null"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        />
+     <view
+          android:layout_width="wrap_content"
+          android:layout_height="1dip"
+          android:background="@color/spinner_background"
+           />
+    <ImageButton
+        android:id="@+id/app_start_button"
+        android:background="@drawable/btn_start_button_selector"
+        android:contentDescription="null"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        />
+
+    <com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar
+        android:id="@+id/verticalSeekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_weight="6"
+        android:max="100"
+        android:progress="10"
+        android:progressDrawable="@drawable/right_slider_contex"
+        android:thumb="@drawable/right_slider_slider"
+        >
+
+    </com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar>
+
+
+
+
+</LinearLayout>

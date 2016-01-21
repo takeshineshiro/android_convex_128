@@ -78,7 +78,10 @@ public  class   MainActivity     extends ActionBarActivity {
 
         drawerLayout   = (DrawerLayout) findViewById(R.id.drawer_layout)   ;
 
+
+
         leftListView   =  (ListView)   findViewById(R.id.left_drawer)     ;
+
 
 
         // set a custom shadow that overlays the main content when the drawer opens
@@ -116,6 +119,7 @@ public  class   MainActivity     extends ActionBarActivity {
         };
 
 
+
            drawerLayout.setDrawerListener(actionBarDrawerToggle);
 
 
@@ -128,6 +132,9 @@ public  class   MainActivity     extends ActionBarActivity {
              getSupportActionBar().setHomeButtonEnabled(true);
 
              getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+             getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_top));
 
 
 

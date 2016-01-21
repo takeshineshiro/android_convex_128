@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="9"
+    android:baselineAligned="false">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="8"
+        >
+        <View
+            android:id="@+id/main_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="10"
+        >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:background="@drawable/lepu"
+            android:contentDescription="null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/app_start_button"
+            android:background="@drawable/btn_start_button_selector"
+            android:contentDescription="null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar
+            android:id="@+id/verticalSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="10"
+            android:progressDrawable="@drawable/right_slider_contex"
+            android:thumb="@drawable/right_slider_slider"
+            android:layout_gravity="center_vertical">
+
+        </com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
