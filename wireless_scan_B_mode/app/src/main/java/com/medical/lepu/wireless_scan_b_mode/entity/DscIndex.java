@@ -9,13 +9,13 @@ public class DscIndex   extends   Object  implements Serializable {
 
     private boolean Bin;
 
-    private long Line;
+    private double Line;
 
-    private long Pixel;
+    private double Pixel;
 
-    private long PartLine;
+    private double  PartLine;
 
-    private long PartPixel;
+    private double  PartPixel;
 
 
     public void setBin(boolean position) {
@@ -31,7 +31,7 @@ public class DscIndex   extends   Object  implements Serializable {
     }
 
 
-    public void setLine(long line) {
+    public void setLine(double  line) {
 
         this.Line = line;
 
@@ -39,34 +39,34 @@ public class DscIndex   extends   Object  implements Serializable {
     }
 
 
-    public long getLine() {
+    public double  getLine() {
 
         return this.Line;
 
     }
 
 
-    public void setPixel( long  pixel) {
+    public void setPixel(double   pixel) {
 
           this.Pixel    =   pixel  ;
     }
 
 
-   public   long    getPixel   ()  {
+   public   double    getPixel   ()  {
 
         return     this.Pixel  ;
 
    }
 
 
-   public    void    setPartLine (long  partLine)  {
+   public    void    setPartLine (double  partLine)  {
 
         this.PartLine    =  partLine  ;
 
    }
 
 
-    public    long     getPartLine  ()  {
+    public    double      getPartLine  ()  {
 
 
        return     this.PartLine  ;
@@ -74,7 +74,7 @@ public class DscIndex   extends   Object  implements Serializable {
     }
 
 
-   public    void     setPartPixel (long   partPixel)  {
+   public    void     setPartPixel (double    partPixel)  {
 
 
        this.PartPixel   =    partPixel  ;
@@ -83,7 +83,7 @@ public class DscIndex   extends   Object  implements Serializable {
 
 
 
-   public    long    getPartPixel ()   {
+   public    double   getPartPixel ()   {
 
       return     this.PartPixel   ;
 
