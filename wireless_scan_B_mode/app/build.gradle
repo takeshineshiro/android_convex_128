@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.koushikdutta.async:androidasync:2.+'
     compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'org.apache.httpcomponents:httpcore:4.4.3'
 }

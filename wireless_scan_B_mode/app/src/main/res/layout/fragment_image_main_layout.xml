@@ -1,20 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width= "match_parent"
     android:layout_height="match_parent"
-    android:weightSum="10"
+    android:weightSum="20"
     >
 
 
 
-       <include   layout="@layout/fragment_image_body_layout"
-            />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="18"
+        android:weightSum="16"
+        android:baselineAligned="false">
 
 
-   
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="15"
+            >
+            <View
+                android:id="@+id/main_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                />
 
-       <include   layout="@layout/fragment_image_foot_layout"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="16"
+            >
+
+            <ImageView
+                android:id="@+id/logo"
+                android:background="@drawable/lepu"
+                android:contentDescription="null"
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_weight="2"
+                android:layout_marginTop="@dimen/space_5"
+                android:alpha="0.6"/>
+
+            <ImageButton
+                android:id="@+id/app_start_button"
+                android:background="@drawable/btn_start_button_selector"
+                android:contentDescription="null"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:layout_height="0dip"
+                android:layout_weight="3"
+                android:layout_gravity="center"/>
+
+            <com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar
+                android:id="@+id/verticalSeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_weight="11"
+                android:max="100"
+                android:progress="10"
+                android:layout_gravity="center"
+
+               >
+
+            </com.medical.lepu.wireless_scan_b_mode.widget.VerticalSeekBar>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@drawable/bg_buttom"
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="0dip">
+
+        <TextView
+            android:id="@+id/pic_num"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_2"
+            android:layout_marginBottom="@dimen/space_4"
+            android:layout_gravity="center"
+            android:layout_weight="7"/>
+
+        <ImageButton
+            android:id="@+id/pre_button"
+            android:background="@drawable/btn_last_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/play_button"
+            android:background="@drawable/btn_play_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/next_button"
+            android:background="@drawable/btn_next_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+
+
+        <ImageButton
+            android:id="@+id/save_button"
+            android:background="@drawable/btn_save_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+
+        <ImageButton
+            android:id="@+id/scanner_button"
+            android:background="@drawable/btn_scan_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+
+        <ImageButton
+            android:id="@+id/setting_button"
+            android:background="@drawable/btn_setting_button_selector"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/space_6"
+            android:layout_weight="1"/>
+
+
+
+    </LinearLayout>
 
 
 

@@ -1,6 +1,8 @@
 package com.medical.lepu.wireless_scan_b_mode.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.medical.lepu.wireless_scan_b_mode.R;
+
+import java.io.InputStream;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -101,7 +105,7 @@ public class LeftDrawerAdapter   extends BaseAdapter {
         holder = (ViewHolder) convertView.getTag();
     }
 
-        holder.submoduleImage.setImageResource(submodule_pic[position]);
+        holder.submoduleImage.setImageBitmap(readBitMap(context,submodule_pic[position]));
 
         holder.submoduleTitle.setText(submodule_name[position]);
 
@@ -113,4 +117,28 @@ public class LeftDrawerAdapter   extends BaseAdapter {
 
 
 
+
+
+    /**
+     * 以最省内存的方式读取本地资源的图片
+     *
+     * @param context
+     * @param resId
+     * @return
+     */
+    public static Bitmap readBitMap(Context context, int resId) {
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        opt.inPurgeable = true;
+        opt.inInputShareable = true;
+// 获取资源图片
+        InputStream is = context.getResources().openRawResource(resId);
+        return BitmapFactory.decodeStream(is, null, opt);
+    }
+
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        return super.getDropDownView(position, convertView, parent);
+    }
 }

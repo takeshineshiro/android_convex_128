@@ -6,8 +6,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,12 +26,14 @@ import com.medical.lepu.wireless_scan_b_mode.fragment.UtrasoundSettingParam;
 import com.medical.lepu.wireless_scan_b_mode.fragment.UtrasoundVideoFrag;
 
 
-public  class   MainActivity     extends ActionBarActivity {
+public  class   MainActivity     extends AppCompatActivity {
 
 
 
      private  DrawerLayout                         drawerLayout ;
 
+
+      private Toolbar                               toolbar     ;
 
      private   ListView                            leftListView ;
 
@@ -44,6 +47,9 @@ public  class   MainActivity     extends ActionBarActivity {
 
 
       private     String[]                           drawer_array  ;
+
+
+     private    BaseFragment                         contentFragment ;
 
 
      public   static   final   String    ITEM_POSITION   =  "item_position" ;
@@ -78,9 +84,11 @@ public  class   MainActivity     extends ActionBarActivity {
 
         drawerLayout   = (DrawerLayout) findViewById(R.id.drawer_layout)   ;
 
-
+         toolbar      =   (Toolbar)   findViewById(R.id.toolbar) ;
 
         leftListView   =  (ListView)   findViewById(R.id.left_drawer)     ;
+
+        setSupportActionBar(toolbar);
 
 
 
@@ -103,15 +111,19 @@ public  class   MainActivity     extends ActionBarActivity {
 
             public void onDrawerOpened(View drawerView) {
 
-                getSupportActionBar().setTitle(drawerTitle);
+                toolbar.setTitle(drawerTitle);
+
+
+
                // getActionBar().setTitle(drawerTitle);
                 invalidateOptionsMenu();       // creates call to onPrepareOptionsMenu()
             }
 
             public void onDrawerClosed(View view) {
 
+                toolbar.setTitle(title);
                // getActionBar().setTitle(title);
-                getSupportActionBar().setTitle(title);
+            //    getSupportActionBar().setTitle(title);
                 invalidateOptionsMenu();    // creates call to onPrepareOptionsMenu()
             }
 
@@ -129,12 +141,13 @@ public  class   MainActivity     extends ActionBarActivity {
 
          //   getActionBar().setDisplayHomeAsUpEnabled(true);
 
-             getSupportActionBar().setHomeButtonEnabled(true);
 
-             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-             getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_top));
+           getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_top));
 
 
 
@@ -178,14 +191,19 @@ public  class   MainActivity     extends ActionBarActivity {
 
       private  void    selectedItem  (int  position)  {
 
-          BaseFragment  contentFragment   =   null ;
 
 
           switch (position)   {
 
             case    0:
 
+
+
+
               contentFragment   =   new UtrasoundImageFrag() ;
+
+
+
 
                  break;
 
@@ -248,7 +266,7 @@ public  class   MainActivity     extends ActionBarActivity {
     public void setTitle(CharSequence title) {
         this.title = title;
       //  getActionBar().setTitle(title);
-          getSupportActionBar().setTitle(title);
+          toolbar.setTitle(title);
     }
 
     //following  are   menu  operation  creat , prepare,cliked action
@@ -317,7 +335,15 @@ public  class   MainActivity     extends ActionBarActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
 
+        contentFragment.onDestroy();
+        super.onDestroy();
+
+
+
+    }
 
 
 

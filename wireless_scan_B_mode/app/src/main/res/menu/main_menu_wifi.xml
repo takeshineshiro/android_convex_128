@@ -4,9 +4,10 @@
 
     <item
         android:id="@+id/wifi"
-        android:icon="@drawable/wifi_link"
+        android:icon="@drawable/icon_wifi"
         android:title="@string/wifi_link"
         android:visible="true"
+
         osc:showAsAction="always"/>
 
 </menu>
