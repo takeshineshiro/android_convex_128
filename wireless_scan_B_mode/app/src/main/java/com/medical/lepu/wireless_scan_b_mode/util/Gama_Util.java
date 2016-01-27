@@ -13,7 +13,7 @@ public class Gama_Util   extends Object  implements Serializable{
       private   static      Gama_Util     gama_util   ;
 
 
-      public     int    []   gama_init  =    new  int [256];
+      public     int    []   gama_table  =    new  int [256];        //伽马查找表
 
 
 
@@ -65,7 +65,7 @@ public class Gama_Util   extends Object  implements Serializable{
                             y*=255*256;
 
 
-                    gama_init[i]  =   (int ) y;
+                    gama_table[i]  =   (int ) y;
 
                 }
 

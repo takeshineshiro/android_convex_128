@@ -7,27 +7,29 @@ import com.medical.lepu.wireless_scan_b_mode.entity.DscIndex;
  */
 public class DSC_Util extends Object{
 
-    public   static   final   int    DSC_WIDTH           = 640  ;
+    public   static   final   int    DSC_WIDTH            = 640  ;
 
-    public   static   final   int    DSC_HEIGHT          =  480 ;
+    public   static   final   int    DSC_HEIGHT           =  480 ;
 
-    public  static    final   int   SAMPLE_IN_LINE      =  512 ;
+    public  static    final   int   SAMPLE_IN_LINE        =  512 ;
 
-    public   static   final   int   LINE_IN_FRAME       =   256 ;
+    public   static   final   int   LINE_IN_FRAME         =   256 ;
 
-    public    static   final   int   PROBE_SECTORARRAY  =  0  ;
+    public    static   final   int   PROBE_SECTORARRAY    =  0  ;
 
-    public    static   final   int   PROBE_SECTORSCAN   =  1  ;
+    public    static   final   int   PROBE_SECTORSCAN     =  1  ;
 
-    public    static    final   int  PROBE_LINEARARRAY  = 2   ;
+    public    static    final   int  PROBE_LINEARARRAY    = 2   ;
 
 
 
-    public   static  final   double   PI            =     3.14159265359  ;
+    public   static  final   double   PI                  =     3.14159265359  ;
 
-    private DscIndex  []   dscIndex   =    new  DscIndex[DSC_WIDTH*DSC_HEIGHT]  ;
+    private DscIndex  []   dscIndex                       =     new  DscIndex[DSC_WIDTH*DSC_HEIGHT]  ;
 
-    private     byte[]    DSC_Image  =     new  byte[DSC_WIDTH*DSC_HEIGHT*4];
+    private     byte[]    DSC_Image                       =     new  byte[DSC_WIDTH*DSC_HEIGHT*4];
+
+    private     int []     gama_table                     =     new  int [256] ;
 
 
     private    int        probelType    ;
@@ -371,9 +373,22 @@ public class DSC_Util extends Object{
 
 
 
+       private        void    getGamaTable ( Gama_Util   gamaUtil )   {
 
 
-       public       byte[]       getDSC_Image  (  byte[]  rawdata)  {
+                      this.gama_table    =    gamaUtil.gama_table  ;
+
+       }
+
+
+
+
+
+
+       public       byte[]       getDSC_Image  (  byte[]  rawdata, Gama_Util   gamaUtil )  {
+
+
+                  getGamaTable ( gamaUtil )  ;                  //获得gama查找表
 
 
                     int     indexPos    =   0;
@@ -388,35 +403,139 @@ public class DSC_Util extends Object{
 
                               DscIndex    initIndex   =    dscIndex[indexPos] ;
 
-                                if (initIndex.getBin())   {
+                                if (initIndex.getBin())   {                   //有效区域
 
 
                                      int     imagePosTemp  ;
 
 
-                                    float    top_left ,top_right,  below_left ,  below_right ;
+                                    int    top_left_sample ,top_right_sample,  below_left_sample ,  below_right_sample ;
 
-                                    float     left,  right ;
+                                    int    top_left_data,   top_right_data,  below_left_data,below_right_data  ;
 
-                                    float    gray  ;
+                                    int   top_left_gama_data, top_right_gama_data, below_left_gama_data, below_right_gama_data;
+
+                                    float     left_fraction_data,  right_fraction_data;
+
+                                    int       gray  ;
 
                                                                                //左侧
                                     {
 
-                                        imagePosTemp   =    imagePos  +  (x<<2);
+                                        imagePosTemp     =    imagePos  +  (x<<2);
+
+                                      top_left_sample    =  ((int)initIndex.getLine()<<9) +(int) initIndex.getPixel() ; //该像素点所对应的采样点在采样点数组中的位置编号
+
+                                      top_right_sample   =  top_left_sample+SAMPLE_IN_LINE ;     //相邻右侧扫描线所对应的采样点编号
+
+                                      below_left_sample  =    top_left_sample  +1  ;            //同根扫描线下侧采样点所对应的采样点编号
+
+                                      below_right_sample =  top_right_sample +1  ;             //相邻右侧扫描线下侧采样点所对应的采样点编号
+
+                                      top_left_data      =    rawdata[top_left_sample];        //采样点对应的图像数据
+
+                                      top_right_data     =    rawdata[top_right_sample];       //采样点对应的图像数据
+
+                                      below_left_data    =    rawdata[below_left_sample];      //采样点对应的图像数据
+
+                                      below_right_data   =    rawdata[below_right_sample];     //采样点对应的图像数据
+
+
+                                      top_left_gama_data  =   gama_table[top_left_data];      //查找表获得gama修正后的图像数据
+
+                                      top_right_gama_data =   gama_table[top_right_data];     //查找表获得gama修正后的图像数据
+
+                                     below_left_gama_data =   gama_table[below_left_data];    //查找表获得gama修正后的图像数据
+
+                                     below_right_gama_data=   gama_table[below_right_data];    //查找表获得gama修正后的图像数据
 
 
 
+                                     left_fraction_data   =  (int )(top_left_gama_data*initIndex.getPartPixel()+below_left_gama_data*(255-initIndex.getPartPixel()))>> 8 ;    //线性二次插值
 
 
+                                     right_fraction_data  =  (int) (top_right_gama_data*initIndex.getPartPixel()+below_right_gama_data*(255-initIndex.getPartPixel())) >>8  ; //线性二次插值
+
+
+                                     gray   =  (int)  (left_fraction_data*initIndex.getPartLine()+right_fraction_data*(255-initIndex.getPartLine()))>>16  ;                  //线性二次插值
+
+
+                                         if(gray>255)
+
+                                             gray   =  255;
+
+
+                                        DSC_Image[imagePosTemp]     =   DSC_Image[imagePosTemp+1]  = DSC_Image[imagePosTemp+2]  = (byte)gray ;     //need  change !!//
+
+                                        DSC_Image[imagePosTemp+3]   =  255;
+
+                                    }
+                                                   //从右侧开始
+
+                                    {
+
+                                         imagePosTemp      =  imagePos   +((DSC_WIDTH-1-x)<<2);
+
+                                         top_right_sample  =  (int)(LINE_IN_FRAME-1-initIndex.getLine())<<9+ (int) initIndex.getPixel()  ;   //该像素点所对应的采样点在采样点数组中的位置编号
+
+                                         top_left_sample   =   top_right_sample  -  SAMPLE_IN_LINE  ;      //相邻左侧扫描线所对应的采样点编号
+
+                                         below_left_sample =  top_left_sample +1  ;                       //相邻左侧扫描线下侧所对应的采样点编号
+
+                                         below_right_sample=   top_right_sample  +1 ;                    //同根扫描线下侧所对应的采样点编号
+
+
+                                         top_left_data     =  rawdata[top_left_sample] ;                 //采样点对应的图像数据
+
+                                         top_right_data    =  rawdata[top_right_sample];                //采样点对应的图像数据
+
+                                         below_left_data   =   rawdata[below_left_sample];              //采样点对应的图像数据
+
+                                         below_right_data  =   rawdata[below_right_sample] ;            //采样点对应的图像数据
+
+
+                                        top_left_gama_data =   gama_table[top_left_data] ;            //查找表获得gama修正后的图像数据
+
+                                        top_right_gama_data=   gama_table[top_right_data];            //查找表获得gama修正后的图像数据
+
+                                        below_left_gama_data = gama_table[below_left_data];          //查找表获得gama修正后的图像数据
+
+                                        below_right_gama_data= gama_table[below_right_data];         //查找表获得gama修正后的图像数据
+
+
+                                       left_fraction_data   =  (int) (top_left_gama_data*initIndex.getPartPixel()+below_left_gama_data*(255-initIndex.getPartPixel()))>>8  ;     //线性二次插值
+
+                                       right_fraction_data  =   (int)(top_right_gama_data*initIndex.getPartPixel()+below_right_gama_data*(255-initIndex.getPartPixel()))>>8 ;   //线性二次插值
+
+                                       gray  =  (int) (left_fraction_data*(255-initIndex.getPartLine())+right_fraction_data*initIndex.getPartLine())>>16 ;        //线性二次插值
+
+
+                                       DSC_Image[imagePosTemp] = DSC_Image[imagePosTemp+1]=DSC_Image[imagePosTemp+2]   =   (byte )gray ;
+
+                                       DSC_Image[imagePosTemp+3]   =  255 ;
 
 
                                     }
 
 
 
+                                }
+
+                               else  {                               //不在有效区域
 
 
+                                       int    imagePosTemp   ;
+
+
+                                    imagePosTemp                =   imagePos    +  (x<<2) ;
+
+
+                                    DSC_Image[imagePosTemp+3]   =   255 ;
+
+
+                                    imagePosTemp                =   imagePos  +  ((DSC_WIDTH-1-x)<<2)   ;
+
+                                     DSC_Image[imagePosTemp+3]  =   255 ;
 
 
 
@@ -424,13 +543,10 @@ public class DSC_Util extends Object{
 
 
 
-
+                              indexPos  ++  ;
 
 
                           }
-
-
-
 
 
                   }
@@ -439,8 +555,7 @@ public class DSC_Util extends Object{
 
 
 
-
-
+         return    DSC_Image  ;
 
 
 
